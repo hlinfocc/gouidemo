@@ -41,7 +41,7 @@ func wsEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func StartWebsocket() {
-	http.HandleFunc("/ws", wsEndpoint)
-	fmt.Println("WebSocket server is running on :1090")
-	log.Fatal(http.ListenAndServe(":1090", nil))
+	http.HandleFunc("/wsclient", wsEndpoint)
+	fmt.Println("WebSocket server is running on :32388")
+	log.Fatal(http.ListenAndServe(":32388", nil))
 }

@@ -14,17 +14,18 @@ os_all='linux windows'
 # arch_all='386 amd64 arm arm64 mips64 mips64le mips mipsle riscv64'
 arch_all='386 amd64'
 
+export GOFLAGS=-buildvcs=false
+
 for os in $os_all; do
     for arch in $arch_all; do
         echo "package: OS:${os},arch: ${arch}"
-
         dockerimg='fyneio/fyne-cross-images:linux'
         if [ "x${os}" = x"windows" ];then
             dockerimg='fyneio/fyne-cross-images:1.1.0-windows'
         fi
-
-        fyne-cross ${os} -app-id net.hlinfo.gouidemo -arch ${arch} -app-version 1.0.1 -image fyneio/fyne-cross-images:1.1.0-windows -icon ./assets/static/logo.png
-
+        fyne-cross ${os} -app-id net.hlinfo.gouidemo -arch ${arch} -app-version 1.0.1 -image ${dockerimg} -icon ./assets/static/logo.png 
+        echo ""
+        echo ""
     done
 done
 
